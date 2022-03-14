@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,6 +10,10 @@ class game {
 	// Deklarera Globala Variabler
 	private static Scanner input = new Scanner(System.in);
 	private static int AntalSpelare;
+	private static int[] Happenings;
+	private static int[] spelPlan_SPELARE = new int[26];
+	private static String[] spelPlan = new String[26];
+	private static boolean vunnit = false;
 	private static String[] spelare;
 	private static String[] bilder;
 	private static final Random rand = new Random();
@@ -18,6 +21,27 @@ class game {
 	private static void tömSkärmen() {
 		for (int i = 0; i < 50; i++) {
 			System.out.println("\b");
+		}
+	}
+
+	private static int[] shuffleArrayen(int[] array, int a) {
+		for (int i = a - 1; i > 0; i--) {
+			int j = rand.nextInt(i + 1);
+			int temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+
+		return array;
+	}
+
+	private static void genereraHappenings() {
+		for (int i = 0; i < spelPlan.length; i++) {
+			spelPlan[i] = "💿";
+
+			if(rand.nextInt(10) < 2) {
+				spelPlan[i] = "📀";
+			}
 		}
 	}
 
@@ -81,14 +105,22 @@ class game {
 			SpelareNummer = 1;
 			for(int i = 0; i < bilder.length; i++) {
 				System.out.println("Spelare " + SpelareNummer + "'s Figur': " + bilder[i]);
+				SpelareNummer++;
 			}
+
 			System.out.println("För att fortsätta skriv A.");
 			respons = input.next().charAt(0);
 			tömSkärmen();
 			
 		}
 
-		System.out.println("");
+		genereraHappenings();
+		while (!vunnit) {
+			for (int i = 0; i < spelPlan.length; i++) {
+				System.out.print(spelPlan[i] + " ");
+			}
 
+			String rep = input.nextLine();
+		}
 	}
 }
