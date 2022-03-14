@@ -6,7 +6,7 @@ class game {
 	// Deklarera Constants
 	private static final int MAX_SPELARE = 5;
 	private static final int MIN_SPELARE = 2;
-	private static final String[] SPELARE_BILDER = { "T", "K", "M", "C", "P", "Y", "V", "L" };
+	private static final String[] SPELARE_BILDER = {"😊","🎶","😺","🤡","🐨","🐻","🐹","🥰"};
 
 	// Deklarera Globala Variabler
 	private static Scanner input = new Scanner(System.in);
@@ -35,6 +35,7 @@ class game {
 
 		}
 
+		// Få fram Spelarnas Namn
 		input.nextLine();
 		tömSkärmen();
 		spelare = new String[AntalSpelare];
@@ -53,7 +54,7 @@ class game {
 			bilder[i] = "";
 		}
 
-		SpelareNummer = 1;
+		// Tilldela alla spelare en slumpmässig Figur.
 		for (int i = 0; i < AntalSpelare; i++) {
 			boolean Tagen = true;
 			String _bild = "";
@@ -62,6 +63,7 @@ class game {
 				int randomNummer = rand.nextInt(SPELARE_BILDER.length);
 				_bild = SPELARE_BILDER[randomNummer];
 
+				// Se till så att spelare inte får samma figur.
 				for (int x = 0; x < bilder.length; x++) {
 					if (bilder[x].equals(_bild)) {
 						Tagen = true;
@@ -72,11 +74,21 @@ class game {
 					bilder[i] = _bild;
 				}
 			}
-
-			System.out.println("Spelare " + SpelareNummer + "'s Figur': " + _bild);
-			SpelareNummer++;
-
 		}
+
+		char respons = 'L';
+		while (respons != 'A') {
+			SpelareNummer = 1;
+			for(int i = 0; i < bilder.length; i++) {
+				System.out.println("Spelare " + SpelareNummer + "'s Figur': " + bilder[i]);
+			}
+			System.out.println("För att fortsätta skriv A.");
+			respons = input.next().charAt(0);
+			tömSkärmen();
+			
+		}
+
+		System.out.println("");
 
 	}
 }
