@@ -78,6 +78,8 @@ class game {
 			bilder[i] = "";
 		}
 
+		
+
 		// Tilldela alla spelare en slumpmässig Figur.
 		for (int i = 0; i < AntalSpelare; i++) {
 			boolean Tagen = true;
@@ -116,6 +118,7 @@ class game {
 
 		genereraHappenings();
 		while (!vunnit) {
+
 			for (int i = 0; i < spelPlan.length; i++) {
 				System.out.print(spelPlan[i] + " ");
 			}
